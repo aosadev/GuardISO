@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SecurityIncident index{% endblock %}
+
+{% block body %}
+    <h1>SecurityIncident index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IncidentDate</th>
+                <th>Description</th>
+                <th>Severity</th>
+                <th>Resolved</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for security_incident in security_incidents %}
+            <tr>
+                <td>{{ security_incident.id }}</td>
+                <td>{{ security_incident.incidentDate ? security_incident.incidentDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ security_incident.description }}</td>
+                <td>{{ security_incident.severity }}</td>
+                <td>{{ security_incident.resolved ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_security_incident_show', {'id': security_incident.id}) }}">show</a>
+                    <a href="{{ path('app_security_incident_edit', {'id': security_incident.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_security_incident_new') }}">Create new</a>
+{% endblock %}

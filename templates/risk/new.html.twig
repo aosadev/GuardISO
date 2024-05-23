@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Risk{% endblock %}
+
+{% block body %}
+    <h1>Create new Risk</h1>
+
+    {{ include('risk/_form.html.twig') }}
+
+    <a href="{{ path('app_risk_index') }}">back to list</a>
+{% endblock %}

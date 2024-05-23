@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Risk index{% endblock %}
+
+{% block body %}
+    <h1>Risk index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RiskDescription</th>
+                <th>Likelihood</th>
+                <th>Impact</th>
+                <th>MitigationMeasures</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for risk in risks %}
+            <tr>
+                <td>{{ risk.id }}</td>
+                <td>{{ risk.riskDescription }}</td>
+                <td>{{ risk.likelihood }}</td>
+                <td>{{ risk.impact }}</td>
+                <td>{{ risk.mitigationMeasures }}</td>
+                <td>
+                    <a href="{{ path('app_risk_show', {'id': risk.id}) }}">show</a>
+                    <a href="{{ path('app_risk_edit', {'id': risk.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_risk_new') }}">Create new</a>
+{% endblock %}
